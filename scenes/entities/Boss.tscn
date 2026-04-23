@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c3svdpnpdmdav"]
+
+[ext_resource type="Script" uid="uid://s65n1oaoq4cm" path="res://scenes/entities/Boss.gd" id="1_88v2c"]
+[ext_resource type="Texture2D" uid="uid://elspx3clv4pj" path="res://assets/boss_large.png" id="1_y1lo8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_88v2c"]
+radius = 44.0
+
+[node name="Boss" type="CharacterBody2D" unique_id=144695868]
+script = ExtResource("1_88v2c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1723836038]
+scale = Vector2(0.07391831, 0.07391828)
+texture = ExtResource("1_y1lo8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=233595456]
+position = Vector2(-5, -2)
+shape = SubResource("CircleShape2D_88v2c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1265189519]

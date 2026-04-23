@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://bneyc4x7oltcj"]
+
+[ext_resource type="Script" uid="uid://b00g80efx4msy" path="res://scenes/ui/HUD.gd" id="1_kw0id"]
+[ext_resource type="Script" uid="uid://o2mysk1n73eb" path="res://scenes/ui/Minimap.gd" id="2_atyv1"]
+[ext_resource type="AudioStream" uid="uid://drx5cv6qwtmyi" path="res://assets/sfx/sounds/ActiveReady.mp3" id="3_6ll6g"]
+[ext_resource type="AudioStream" uid="uid://cyfokucjh64b2" path="res://assets/sfx/sounds/RageReady.mp3" id="4_4ed8p"]
+[ext_resource type="AudioStream" uid="uid://bp5dp1b5tr8mc" path="res://assets/sfx/sounds/RageActivate.wav" id="5_rnyu1"]
+[ext_resource type="AudioStream" uid="uid://c8ntljtg6uh4o" path="res://assets/sfx/sounds/RageEnd.wav" id="6_rnyu1"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1869095209 groups=["hud"]]
+script = ExtResource("1_kw0id")
+
+[node name="HealthUI" type="Control" parent="." unique_id=1025912177]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HealthUI" unique_id=78849492]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PickupLabel" type="Label" parent="." unique_id=315022653]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActiveSlot" type="Control" parent="." unique_id=661328517]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Icon" type="ColorRect" parent="ActiveSlot" unique_id=1196383365]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CooldownBar" type="ProgressBar" parent="ActiveSlot" unique_id=1438539383]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 14.0
+offset_right = 80.0
+offset_bottom = 41.0
+
+[node name="NameLabel" type="Label" parent="ActiveSlot" unique_id=938314708]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -9.0
+offset_right = 80.0
+offset_bottom = 14.0
+
+[node name="MinimapContainer" type="Control" parent="." unique_id=2092992846]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -206.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 206.0
+grow_horizontal = 0
+
+[node name="Background" type="ColorRect" parent="MinimapContainer" unique_id=443165449]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.15686275)
+
+[node name="Minimap" type="Control" parent="MinimapContainer" unique_id=1001316606]
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 200.0
+script = ExtResource("2_atyv1")
+
+[node name="DescriptionPopup" type="PanelContainer" parent="." unique_id=1611987256]
+offset_left = 24.0
+offset_top = 95.0
+offset_right = 64.0
+offset_bottom = 145.0
+
+[node name="MarginContainer" type="MarginContainer" parent="DescriptionPopup" unique_id=426549052]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DescriptionPopup/MarginContainer" unique_id=1105878205]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="DescriptionPopup/MarginContainer/VBoxContainer" unique_id=1809020640]
+layout_mode = 2
+
+[node name="DescLabel" type="Label" parent="DescriptionPopup/MarginContainer/VBoxContainer" unique_id=1038185996]
+layout_mode = 2
+
+[node name="RestartOverlay" type="ColorRect" parent="." unique_id=2025832165]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ActiveReadySound" type="AudioStreamPlayer" parent="." unique_id=1981067534]
+stream = ExtResource("3_6ll6g")
+
+[node name="RageBar" type="ProgressBar" parent="." unique_id=1447390285]
+offset_left = 25.0
+offset_top = 50.0
+offset_right = 175.0
+offset_bottom = 77.0
+
+[node name="RageReadySound" type="AudioStreamPlayer" parent="." unique_id=1585741237]
+stream = ExtResource("4_4ed8p")
+
+[node name="RageActivateSound" type="AudioStreamPlayer" parent="." unique_id=271264007]
+stream = ExtResource("5_rnyu1")
+
+[node name="RageEndSound" type="AudioStreamPlayer" parent="." unique_id=770203201]
+stream = ExtResource("6_rnyu1")

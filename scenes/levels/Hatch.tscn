@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://3duytbr46gng"]
+
+[ext_resource type="Script" uid="uid://cis3rwnb4y7x6" path="res://scenes/levels/Hatch.gd" id="1_8ed2n"]
+[ext_resource type="Texture2D" uid="uid://dihu00a4qs1bl" path="res://assets/boss.jpg" id="1_p7blu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ed2n"]
+size = Vector2(52, 53)
+
+[node name="Hatch" type="Area2D" unique_id=648140955]
+script = ExtResource("1_8ed2n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1006449405]
+scale = Vector2(0.07291673, 0.07291673)
+texture = ExtResource("1_p7blu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2132610996]
+shape = SubResource("RectangleShape2D_8ed2n")

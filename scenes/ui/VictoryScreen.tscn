@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c5hsrighkyg1g"]
+
+[ext_resource type="Script" uid="uid://dks56244d45qp" path="res://scenes/ui/VictoryScreen.gd" id="1_kruri"]
+
+[node name="VictoryScreen" type="CanvasLayer" unique_id=1943021798]
+script = ExtResource("1_kruri")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1287591002]
+offset_right = 1151.0
+offset_bottom = 659.0
+color = Color(0.21060249, 0.27730417, 0, 0.38039216)
+
+[node name="Label" type="Label" parent="." unique_id=563210438]
+offset_left = 505.0
+offset_top = 254.0
+offset_right = 619.0
+offset_bottom = 322.0
+text = "\"VICTORY\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="." unique_id=1146469930]
+offset_left = 508.0
+offset_top = 443.0
+offset_right = 613.0
+offset_bottom = 474.0
+text = "Continue"
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

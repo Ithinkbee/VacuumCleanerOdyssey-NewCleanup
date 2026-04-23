@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://duw70ywyvvp0e"]
+
+[ext_resource type="Script" uid="uid://du8dl6sm51dag" path="res://scenes/items/Trophy.gd" id="1_bchum"]
+[ext_resource type="Texture2D" uid="uid://c1aue0arul2i2" path="res://assets/trophy.png" id="1_g8pqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bchum"]
+size = Vector2(44, 42)
+
+[node name="Trophy" type="Area2D" unique_id=1045295995]
+script = ExtResource("1_bchum")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1188083591]
+scale = Vector2(0.04799107, 0.04799107)
+texture = ExtResource("1_g8pqu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901125644]
+shape = SubResource("RectangleShape2D_bchum")

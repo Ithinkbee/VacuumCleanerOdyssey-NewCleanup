@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://f3rjvu7c5fr2"]
+
+[ext_resource type="Script" uid="uid://e238i5qr22jw" path="res://scenes/entities/EnemyWalker.gd" id="1_i5wos"]
+[ext_resource type="Texture2D" uid="uid://d2cqoloifu3ia" path="res://assets/enemy_sprites/EnemyWalker/enemy_6.png" id="1_ii8ns"]
+[ext_resource type="Texture2D" uid="uid://bgpvwesy60xcp" path="res://assets/enemy_sprites/EnemyWalker/enemy_0.png" id="2_pvwny"]
+[ext_resource type="Texture2D" uid="uid://blrsv3x8kl1oj" path="res://assets/enemy_sprites/EnemyWalker/enemy_1.png" id="3_efskx"]
+[ext_resource type="Texture2D" uid="uid://rg7qv5mhakyy" path="res://assets/enemy_sprites/EnemyWalker/enemy_2.png" id="4_3nqsu"]
+[ext_resource type="Texture2D" uid="uid://l5sbk2w5txih" path="res://assets/enemy_sprites/EnemyWalker/enemy_3.png" id="5_0as5x"]
+[ext_resource type="Texture2D" uid="uid://h1vf70pbvw12" path="res://assets/enemy_sprites/EnemyWalker/enemy_4.png" id="6_vdn3v"]
+[ext_resource type="Texture2D" uid="uid://bvrcp6hu054ki" path="res://assets/enemy_sprites/EnemyWalker/enemy_5.png" id="7_clvjp"]
+[ext_resource type="Texture2D" uid="uid://s4s8s1o85xq5" path="res://assets/enemy_sprites/EnemyWalker/enemy_7.png" id="9_vj64d"]
+[ext_resource type="Texture2D" uid="uid://e13muu1v4vxs" path="res://assets/enemy_sprites/EnemyWalker/enemy_8.png" id="10_pcmsx"]
+[ext_resource type="Texture2D" uid="uid://dxwb7bvdrs3lt" path="res://assets/enemy_sprites/EnemyWalker/enemy_9.png" id="11_vso6m"]
+[ext_resource type="Texture2D" uid="uid://cra0ki04mw7sw" path="res://assets/enemy_sprites/EnemyWalker/enemy_10.png" id="12_oy2s4"]
+[ext_resource type="Texture2D" uid="uid://c08yueph628wm" path="res://assets/enemy_sprites/EnemyWalker/enemy_11.png" id="13_lccmb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5wos"]
+size = Vector2(56.5, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3omh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pvwny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_efskx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3nqsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0as5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vdn3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_clvjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ii8ns")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vj64d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pcmsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_vso6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_oy2s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lccmb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[node name="EnemyWalker" type="CharacterBody2D" unique_id=551042210 groups=["enemies"]]
+script = ExtResource("1_i5wos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=259869076]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_i5wos")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1543410072]
+scale = Vector2(0.15453297, 0.15453297)
+sprite_frames = SubResource("SpriteFrames_t3omh")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.22349668

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c2wd3ywppslar"]
+
+[ext_resource type="Script" uid="uid://by0frhsf5jrob" path="res://scenes/levels/World.gd" id="1_sgwbd"]
+[ext_resource type="PackedScene" uid="uid://cg7j31q3s8avi" path="res://scenes/entities/Player.tscn" id="1_v31nu"]
+[ext_resource type="Script" uid="uid://ccnvreusfc1gx" path="res://scenes/levels/FloorGenerator.gd" id="3_efo0y"]
+[ext_resource type="PackedScene" uid="uid://bneyc4x7oltcj" path="res://scenes/ui/HUD.tscn" id="4_ps7a7"]
+
+[node name="World" type="Node2D" unique_id=163803123 groups=["world"]]
+script = ExtResource("1_sgwbd")
+
+[node name="Player" parent="." unique_id=2018950074 instance=ExtResource("1_v31nu")]
+
+[node name="RoomContainer" type="Node2D" parent="." unique_id=931504912]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1552272500]
+position = Vector2(578, 324)
+
+[node name="FloorGenerator" type="Node" parent="." unique_id=259554128]
+script = ExtResource("3_efo0y")
+
+[node name="HUD" parent="." unique_id=1869095209 instance=ExtResource("4_ps7a7")]

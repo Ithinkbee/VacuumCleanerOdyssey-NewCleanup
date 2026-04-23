@@ -1,0 +1,29 @@
+{
+	"player": {
+		"hp": 6,
+		"speed": 250.0,
+		"damage": 1,
+		"shoot_delay": 0.4,
+		"invincibility_time": 1.0,
+		"bullet_range": 400.0
+	},
+	"enemy_walker": {
+		"hp": 6,
+		"speed": 110.0
+	},
+	"rage": {
+		"max_rage": 100.0,
+		"kill_gain": 18.0,
+		"damage_gain": 25.0,
+		"decay_delay": 4.0,
+		"decay_rate": 8.0,
+		"duration": 7.0,
+		"damage_mult": 2.0,
+		"speed_mult": 2.0,
+		"shoot_delay_mult": 0.5
+	},
+	"colors": {
+		"danger": "#ff0000",
+		"info": "#ffffff"
+	}
+}

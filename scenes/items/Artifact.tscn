@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://7cs5kwh8r72s"]
+
+[ext_resource type="Script" uid="uid://rs4vuts6i6ts" path="res://scenes/items/Artifact.gd" id="1_qsjeb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u86n3"]
+radius = 24.020824
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qsjeb"]
+radius = 228.56071
+
+[node name="Artifact" type="Area2D" unique_id=1276623849]
+script = ExtResource("1_qsjeb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=792708542]
+shape = SubResource("CircleShape2D_u86n3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1449180747]
+
+[node name="BeamParticles" type="GPUParticles2D" parent="." unique_id=934140456]
+
+[node name="ProximityArea" type="Area2D" parent="." unique_id=370448092]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximityArea" unique_id=1097563977]
+shape = SubResource("CircleShape2D_qsjeb")

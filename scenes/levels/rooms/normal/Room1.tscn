@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dfx4nne2vkpij"]
+
+[ext_resource type="PackedScene" uid="uid://ddi8e0wey2uq0" path="res://scenes/levels/BaseRoom.tscn" id="1_t61w0"]
+
+[node name="BaseRoom" unique_id=384813514 instance=ExtResource("1_t61w0")]
+
+[node name="DoorUp" parent="Doors" parent_id_path=PackedInt32Array(114431925) index="0" unique_id=1479052044]
+direction = "up"
+
+[node name="Marker2D" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1378047488) index="0" unique_id=1577305975 groups=["spawn_enemy_walker"]]
+position = Vector2(904, 138)

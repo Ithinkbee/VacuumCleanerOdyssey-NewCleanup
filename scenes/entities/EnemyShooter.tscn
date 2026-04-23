@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d3akcqii4m85y"]
+
+[ext_resource type="Script" uid="uid://c8cbh1ou501kh" path="res://scenes/entities/EnemyShooter.gd" id="1_5i265"]
+[ext_resource type="Texture2D" uid="uid://cnw2r5g4bds2l" path="res://assets/enemy_shooter_0.png" id="2_q1mvt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssd2h"]
+size = Vector2(51, 42)
+
+[node name="EnemyShooter" type="CharacterBody2D" unique_id=1283043565 groups=["enemies"]]
+script = ExtResource("1_5i265")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1892684440]
+wait_time = 1.5
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=248730167]
+scale = Vector2(0.4453125, 0.4453125)
+texture = ExtResource("2_q1mvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1639225827 groups=["enemies"]]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_ssd2h")

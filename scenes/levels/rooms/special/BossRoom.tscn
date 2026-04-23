@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ninw7tggtiq6"]
+
+[ext_resource type="PackedScene" uid="uid://ddi8e0wey2uq0" path="res://scenes/levels/BaseRoom.tscn" id="1_kkdsv"]
+
+[node name="BaseRoom" unique_id=384813514 instance=ExtResource("1_kkdsv")]
+
+[node name="Marker2D" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1378047488) index="0" unique_id=2051838011 groups=["spawn_boss"]]
+position = Vector2(574, 337)
+
+[node name="Marker2D2" type="Marker2D" parent="Spawns" parent_id_path=PackedInt32Array(1378047488) index="1" unique_id=250074513 groups=["spawn_hatch"]]
+position = Vector2(573, 257)
