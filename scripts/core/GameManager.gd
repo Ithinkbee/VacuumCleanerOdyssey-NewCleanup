@@ -36,9 +36,10 @@ func change_state(new_state: GameState):
 	if new_state == GameState.PLAYING:
 		floor_data = {}
 		visited_rooms = []
+		score = 0
+		start_time = Time.get_ticks_msec()
 		Artifacts.reset()
 		Engine.time_scale = 1.0
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/levels/World.tscn")
 
 	if new_state == GameState.VICTORY:
 		var raw_time = (Time.get_ticks_msec() - start_time) / 1000.0

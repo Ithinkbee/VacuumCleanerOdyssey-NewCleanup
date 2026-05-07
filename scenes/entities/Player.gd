@@ -40,6 +40,8 @@ var _rage_decay_timer: float = 0.0  # сколько прошло с после�
 
 var rage_gain_mult: float = 1.0  # модифицируется артефактом "Красная тряпка"
 
+var _hud = null
+
 signal health_changed(current_hp, max_hp)
 signal active_cooldown_updated(remaining, total)
 signal rage_changed(current_rage, max_rage)
@@ -48,6 +50,7 @@ func _ready():
 	current_hp = max_hp
 	health_changed.emit(current_hp, max_hp)
 	add_to_group("player")
+	_hud = get_tree().get_first_node_in_group("hud")
 
 func _physics_process(delta):
 	if Game.current_state != Game.GameState.PLAYING:
@@ -125,9 +128,8 @@ func add_rage(amount: float):
 
 	# Звук и сигнал когда шкала заполнена
 	if rage >= rage_max:
-		var hud = get_tree().get_first_node_in_group("hud")
-		if hud:
-			hud.on_rage_ready()
+		if _hud:
+			_hud.on_rage_ready()
 
 func _activate_rage():
 	is_raging = true
@@ -135,17 +137,16 @@ func _activate_rage():
 	rage_changed.emit(rage, rage_max)
 
 	# Звук активации
-	var hud = get_tree().get_first_node_in_group("hud")
-	if hud:
-		hud.on_rage_activated()
+	if _hud:
+		_hud.on_rage_activated()
 
 	# Визуал: красное свечение + пульсация размера
 	_start_rage_visuals()
 
 	await get_tree().create_timer(rage_duration).timeout
-	
-	if hud:
-		hud.on_rage_ended()
+
+	if _hud:
+		_hud.on_rage_ended()
 	
 	is_raging = false
 	_stop_rage_visuals()
@@ -275,25 +276,22 @@ func handle_restart_input(delta):
 	if Input.is_action_pressed("restart"):
 		_restart_hold_time += delta
 		var progress = _restart_hold_time / RESTART_HOLD_DURATION
-		var hud = get_tree().get_first_node_in_group("hud")
-		if hud:
-			hud.set_restart_overlay(progress)
+		if _hud:
+			_hud.set_restart_overlay(progress)
 		if _restart_hold_time >= RESTART_HOLD_DURATION:
 			_trigger_restart()
 	else:
 		if _restart_hold_time > 0.0:
 			_restart_hold_time = 0.0
-			var hud = get_tree().get_first_node_in_group("hud")
-			if hud:
+			if _hud:
 				var tween = create_tween()
-				tween.tween_method(hud.set_restart_overlay, hud.restart_overlay.modulate.a, 0.0, 0.3)
+				tween.tween_method(_hud.set_restart_overlay, _hud.restart_overlay.modulate.a, 0.0, 0.3)
 
 func _trigger_restart():
 	_restarting = true
-	var hud = get_tree().get_first_node_in_group("hud")
-	if hud:
+	if _hud:
 		var tween = create_tween()
-		tween.tween_method(hud.set_restart_overlay, hud.restart_overlay.modulate.a, 1.0, 0.4)
+		tween.tween_method(_hud.set_restart_overlay, _hud.restart_overlay.modulate.a, 1.0, 0.4)
 		await tween.finished
 	Game.restart_game()
 

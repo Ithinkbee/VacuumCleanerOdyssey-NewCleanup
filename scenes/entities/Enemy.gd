@@ -28,6 +28,10 @@ func die():
 	if player and player.has_method("add_rage"):
 		player.add_rage(player.rage_kill_gain)
 
+	var parent = get_parent()
+	if parent and parent.has_method("on_enemy_died"):
+		parent.on_enemy_died()
+
 	queue_free()
 
 func check_player_collision():

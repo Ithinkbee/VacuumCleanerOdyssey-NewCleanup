@@ -32,9 +32,7 @@ func spawn_content():
 	is_initializing = true
 
 	if has_node("Spawns"):
-		print("=== spawn_content: найден узел Spawns, детей: ", $Spawns.get_children().size())
 		for marker in $Spawns.get_children():
-			print("  маркер: ", marker.name, " | группы: ", marker.get_groups())
 			if marker.is_in_group("spawn_hatch"):
 				hatch_position = marker.global_position
 				continue
@@ -66,25 +64,21 @@ func spawn_content():
 
 			marker.queue_free()
 	else:
-		print("=== spawn_content: узел Spawns НЕ НАЙДЕН")
+		pass
 
 	is_initializing = false
+	call_deferred("_check_if_cleared")
 
-func _physics_process(_delta):
-	# Если мы еще спавним врагов или комната уже чиста — не проверяем
-	if is_initializing or is_cleared: 
+func on_enemy_died():
+	call_deferred("_check_if_cleared")
+
+func _check_if_cleared():
+	if is_cleared or is_initializing:
 		return
-	
-	check_enemies_count()
-
-func check_enemies_count():
-	var enemy_count = 0
 	for child in get_children():
-		if child.is_in_group("enemies"):
-			enemy_count += 1
-	
-	if enemy_count == 0:
-		clear_room()
+		if child.is_in_group("enemies") and not child.is_queued_for_deletion():
+			return
+	clear_room()
 
 func clear_room():
 	if is_cleared: return

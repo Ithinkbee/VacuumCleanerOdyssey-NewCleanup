@@ -48,11 +48,17 @@ func _physics_process(delta):
 	for i in steps:
 		position += step
 
+static var _cached_enemies: Array = []
+static var _cache_frame: int = -1
+
 func _apply_homing(delta):
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	var frame = Engine.get_physics_frames()
+	if frame != _cache_frame:
+		_cached_enemies = get_tree().get_nodes_in_group("enemies")
+		_cache_frame = frame
 	var nearest: Node2D = null
 	var nearest_dist = INF
-	for e in enemies:
+	for e in _cached_enemies:
 		var d = global_position.distance_to(e.global_position)
 		if d < nearest_dist:
 			nearest_dist = d

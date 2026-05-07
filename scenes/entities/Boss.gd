@@ -1,6 +1,9 @@
 extends Enemy
 
-@export var size: int = 3 
+const BOSS_SCENE = preload("res://scenes/entities/Boss.tscn")
+const TROPHY_SCENE = preload("res://scenes/items/Trophy.tscn")
+
+@export var size: int = 3
 var bounce_velocity = Vector2.ZERO
 var rotation_speed = 0.0
 
@@ -52,27 +55,24 @@ func _physics_process(delta):
 
 func die():
 	if size > 1:
-		# Используем call_deferred для безопасного спавна детей
 		call_deferred("spawn_children")
 	else:
 		call_deferred("check_victory_condition")
-	
-	# Убираем его из группы сразу, чтобы счетчик не ошибался
+
 	remove_from_group("bosses")
+
+	var parent = get_parent()
+	if parent and parent.has_method("on_enemy_died"):
+		parent.on_enemy_died()
+
 	queue_free()
 
 func spawn_children():
 	var child_count = 2 if size == 3 else 3
-	var boss_scene = load("res://scenes/entities/Boss.tscn")
-	
 	for i in range(child_count):
-		var child = boss_scene.instantiate()
+		var child = BOSS_SCENE.instantiate()
 		child.size = size - 1
-		
-		# Добавляем ребенка в комнату (родитель текущего босса)
 		get_parent().add_child(child)
-		
-		# Задаем позицию после добавления в дерево
 		child.global_position = global_position + Vector2(randf_range(-30, 30), randf_range(-30, 30))
 
 func check_victory_condition():
@@ -85,12 +85,6 @@ func check_victory_condition():
 		spawn_trophy()
 
 func spawn_trophy():
-	var trophy_path = "res://scenes/items/Trophy.tscn" 
-	if ResourceLoader.exists(trophy_path):
-		var trophy_scene = load(trophy_path)
-		var trophy = trophy_scene.instantiate()
-		get_parent().add_child(trophy)
-		trophy.global_position = global_position
-		print("Трофей появился!")
-	else:
-		print("Ошибка: Файл трофея не найден по пути: ", trophy_path)
+	var trophy = TROPHY_SCENE.instantiate()
+	get_parent().add_child(trophy)
+	trophy.global_position = global_position

@@ -3,6 +3,7 @@ extends Area2D
 var artifact_id: String = ""
 var _bob_time: float = 0.0
 var _base_y: float = 0.0
+var _hud = null
 
 @onready var sprite = $Sprite2D
 @onready var beam = $BeamParticles
@@ -11,6 +12,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 	$ProximityArea.body_entered.connect(_on_proximity_entered)
 	$ProximityArea.body_exited.connect(_on_proximity_exited)
+	_hud = get_tree().get_first_node_in_group("hud")
 
 func setup(id: String):
 	artifact_id = id
@@ -36,17 +38,13 @@ func _process(delta):
 	position.y = _base_y + sin(_bob_time * 2.0) * 6.0
 
 func _on_proximity_entered(body):
-	if body.is_in_group("player"):
-		var hud = get_tree().get_first_node_in_group("hud")
-		if hud:
-			var data = Artifacts.get_data(artifact_id)
-			hud.show_artifact_description(data["name"], data["description"])
+	if body.is_in_group("player") and _hud:
+		var data = Artifacts.get_data(artifact_id)
+		_hud.show_artifact_description(data["name"], data["description"])
 
 func _on_proximity_exited(body):
-	if body.is_in_group("player"):
-		var hud = get_tree().get_first_node_in_group("hud")
-		if hud:
-			hud.hide_artifact_description()
+	if body.is_in_group("player") and _hud:
+		_hud.hide_artifact_description()
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
@@ -67,20 +65,16 @@ func _apply_to_player(player):
 			Artifacts.apply_bullet_flag(effect["flag"], effect["value"])
 		"active":
 			Artifacts.active_artifact = artifact_id
-			# Сообщаем HUD об активном предмете
-			var hud = get_tree().get_first_node_in_group("hud")
-			if hud:
-				hud.set_active_artifact(data)
+			if _hud:
+				_hud.set_active_artifact(data)
 		"visual":
 			_apply_visual(effect)
 
 	Artifacts.collected.append(artifact_id)
 
-	# Показываем название подбора на HUD
-	var hud = get_tree().get_first_node_in_group("hud")
-	if hud:
-		hud.show_artifact_pickup(data["name"])
-		hud.hide_artifact_description()
+	if _hud:
+		_hud.show_artifact_pickup(data["name"])
+		_hud.hide_artifact_description()
 	
 	var parent = get_parent()
 	if parent is Room:

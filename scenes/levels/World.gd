@@ -14,8 +14,6 @@ func _ready():
 	# Генерируем карту
 	floor_plan = generator.generate_floor()
 	Game.floor_data = floor_plan
-	# Выводим карту в консоль для отладки
-	print("Карта этажа построена: ", floor_plan)
 	
 	Game.request_world_room_change.connect(_on_room_change_requested)
 	
@@ -97,7 +95,7 @@ func _on_room_change_requested(dir):
 		await get_tree().create_timer(0.2).timeout
 		is_changing_room = false
 	else:
-		print("Там тупик, комнаты нет!")
+		pass
 
 func _move_player_to_opposite_door(dir):
 	var center = Vector2(current_grid_pos.x * room_size.x, current_grid_pos.y * room_size.y) + (room_size / 2)
